@@ -1,57 +1,26 @@
-var Todo = require('./models/todo');
-
-function getTodos(res) {
-    Todo.find(function (err, todos) {
-
-        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-        if (err) {
-            res.send(err);
-        }
-
-        res.json(todos); // return all todos in JSON format
-    });
-};
-
 module.exports = function (app) {
-
+    var path = require('path');
     // api ---------------------------------------------------------------------
     // get all todos
-    app.get('/api/todos', function (req, res) {
-        // use mongoose to get all todos in the database
-        getTodos(res);
+    app.get('/page0', function (req, res) {
+        console.log('*'+__dirname +'-page0');
+        res.sendFile(path.resolve(__dirname + '/../public/src/page/page0.html')); // load the single view file (angular will handle the page changes on the front-end)
     });
-
-    // create todo and send back all todos after creation
-    app.post('/api/todos', function (req, res) {
-
-        // create a todo, information comes from AJAX request from Angular
-        Todo.create({
-            text: req.body.text,
-            done: false
-        }, function (err, todo) {
-            if (err)
-                res.send(err);
-
-            // get and return all the todos after you create another
-            getTodos(res);
-        });
-
+    app.get('/page1', function (req, res) {
+        console.log('*'+__dirname + '-page1');
+        res.sendFile(path.resolve(__dirname + '/../public/src/page/page1.html')); // load the single view file (angular will handle the page changes on the front-end)
     });
-
-    // delete a todo
-    app.delete('/api/todos/:todo_id', function (req, res) {
-        Todo.remove({
-            _id: req.params.todo_id
-        }, function (err, todo) {
-            if (err)
-                res.send(err);
-
-            getTodos(res);
-        });
+    app.get('/page2', function (req, res) {
+        console.log('*'+__dirname + '-page2');
+        res.sendFile(path.resolve(__dirname + '/../public/src/page/page2.html')); // load the single view file (angular will handle the page changes on the front-end)
     });
-
+    app.get('/page3', function (req, res) {
+        console.log('*'+__dirname + '-page3');
+        res.sendFile(path.resolve(__dirname + '/../public/src/page/page3.html')); // load the single view file (angular will handle the page changes on the front-end)
+    });
     // application -------------------------------------------------------------
     app.get('*', function (req, res) {
-        res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+        console.log('*'+__dirname+'-main');
+        res.sendFile(path.resolve(__dirname + '/../public/index.html')); // load the single view file (angular will handle the page changes on the front-end)
     });
 };
