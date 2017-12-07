@@ -19,7 +19,7 @@ module.exports = function (app) {
         res.sendFile(path.resolve(__dirname + '/../public/src/page/page3.html')); // load the single view file (angular will handle the page changes on the front-end)
     });
     // application -------------------------------------------------------------
-    app.get('*', function (req, res) {
+    app.get('/', function (req, res) {
         console.log('*'+__dirname+'-main');
         res.sendFile(path.resolve(__dirname + '/../public/index.html')); // load the single view file (angular will handle the page changes on the front-end)
     });

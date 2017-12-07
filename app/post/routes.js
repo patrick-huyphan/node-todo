@@ -1,4 +1,4 @@
-var Todo = require('./models/todo');
+var Todo = require('./models/Post');
 
 function getTodos(res) {
     Todo.find(function (err, todos) {
@@ -51,7 +51,7 @@ module.exports = function (app) {
     });
 
     // application -------------------------------------------------------------
-    app.get('*', function (req, res) {
+    app.get('/post', function (req, res) {
         console.log('*'+__dirname);
         res.sendFile('/../'+__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
     });
