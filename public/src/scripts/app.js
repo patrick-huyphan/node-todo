@@ -11,18 +11,18 @@ petClinicApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider'
     $httpProvider.defaults.headers.common["Cache-Control"] = 'no-cache';
     $httpProvider.interceptors.push('HttpErrorHandlingInterceptor');
 
-    $locationProvider.hashPrefix('!');
+    //$locationProvider.hashPrefix('!');
 
-    $urlRouterProvider.otherwise('/welcome');
+    $urlRouterProvider.otherwise('/page0');
     $stateProvider
-        .state('app', {
+        .state('page0', {
             abstract: true,
             url: '',
             template: '<ui-view></ui-view>'
         })
-        .state('welcome', {
+        .state('page0', {
             parent: 'app',
-            url: '/welcome',
+            url: '/page0',
             template: '<layout-welcome></layout-welcome>'
         });
 }]);
@@ -31,6 +31,6 @@ petClinicApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider'
     var mod = 'layout' + c.toUpperCase().substring(0, 1) + c.substring(1);
     angular.module(mod, []);
     angular.module(mod).component(mod, {
-        templateUrl: "scripts/fragments/" + c + ".html"
+        templateUrl: "src/scripts/fragments/" + c + ".html"
     });
 });

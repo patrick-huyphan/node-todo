@@ -53,6 +53,6 @@ module.exports = function (app) {
     // application -------------------------------------------------------------
     app.get('/post', function (req, res) {
         console.log('*'+__dirname);
-        res.sendFile('/../'+__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+        res.sendFile(__dirname + '/../public/src/page/page1.html'); // load the single view file (angular will handle the page changes on the front-end)
     });
 };
